@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/app_lock_enter_pin_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_enter_pin" />
+
+    <include layout="@layout/view_app_lock_registraion" />
+
+    <include layout="@layout/view_change_password" />
+
+    <TextView
+        android:id="@+id/et_password_error_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="please check Invalid entry"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/verify_otp_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_16"
+        android:background="@color/colorAccent"
+        android:text="Create Password"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+</LinearLayout>

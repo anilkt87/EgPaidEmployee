@@ -1,0 +1,66 @@
+package com.egpaid.employeeapp.home.monitor.widget.adapter
+
+import android.content.Context
+import android.view.View
+import com.egpaid.employeeapp.base.adapter.BaseViewHolder
+import com.egpaid.employeeapp.home.monitor.entities.Monitor
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.view_monitor_daily_item.*
+import android.content.pm.PackageManager
+
+import android.graphics.drawable.Drawable
+import android.widget.ImageView
+import java.util.concurrent.TimeUnit
+
+
+class MonitoryDailyItemViewHolder(
+        itemView: View,
+        val context: Context
+) : BaseViewHolder<Monitor>(itemView), LayoutContainer {
+
+    override val containerView = itemView
+
+    override fun bind(item: Monitor) {
+        tv_app_name.text = item.appName
+        appIcon(item.packageName, img_app)
+        val parentDuration = item.parentUsageDuration ?: 0L
+        val childDuration = item.childUsageDuration ?: 0L
+
+        tv_parent_time.text = getDurationBreakdown(parentDuration)
+        tv_child_time.text = getDurationBreakdown(childDuration)
+        tv_total_time.text = getDurationBreakdown(childDuration + parentDuration)
+
+        if (parentDuration > 0) {
+            val parentUsagePercentage = (parentDuration * 100 / (childDuration + parentDuration))
+            tv_parent_progress.progress = parentUsagePercentage.toInt()
+        }
+        if (childDuration > 0) {
+            val childUsagePercentage = (childDuration * 100 / (childDuration + parentDuration))
+            tv_child_progress.progress = childUsagePercentage.toInt()
+        }
+
+    }
+
+    fun appIcon(packageName: String, imagerView: ImageView) {
+        try {
+            val icon: Drawable = context.packageManager
+                    .getApplicationIcon(packageName)
+
+            imagerView.setImageDrawable(icon);
+
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun getDurationBreakdown(millis: Long): String? {
+        var millis = millis
+        require(millis >= 0) { "Duration must be greater than zero!" }
+        val hours = TimeUnit.MILLISECONDS.toHours(millis)
+        millis -= TimeUnit.HOURS.toMillis(hours)
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(millis)
+        millis -= TimeUnit.MINUTES.toMillis(minutes)
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(millis)
+        return "$hours h $minutes m $seconds s"
+    }
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_enter_pin_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    >
+    <LinearLayout
+        android:id="@+id/root_otp_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <EditText
+            android:id="@+id/otp_edit_box1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="30sp"
+            android:background="@drawable/edittext_curve_bg"/>
+
+        <EditText
+            android:id="@+id/otp_edit_box2"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:background="@drawable/edittext_curve_bg"/>
+
+        <EditText
+            android:id="@+id/otp_edit_box3"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:inputType="number"
+            android:maxLength="1"
+            android:background="@drawable/edittext_curve_bg"/>
+
+        <EditText
+            android:id="@+id/otp_edit_box4"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:maxLength="1"
+            android:background="@drawable/edittext_curve_bg" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/et_invalid_pin_error_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="wrong pin please enter correct"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_below="@+id/root_otp_layout"
+        android:visibility="gone" />
+
+    <TextView
+            android:id="@+id/tv_change_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_invalid_pin_error_view"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_16"
+            android:text="Change Password "
+            android:textColor="#0645AD"
+            android:textSize="@dimen/tfl_24sp" />
+
+
+</RelativeLayout>

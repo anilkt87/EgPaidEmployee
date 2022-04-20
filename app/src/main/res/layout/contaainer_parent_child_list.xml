@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="#D3D3D3"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+        <TextView
+                android:id="@+id/tv_full_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@drawable/button_background"
+                android:gravity="end"
+                android:padding="8dp"
+                android:text="full view"
+                android:textColor="@android:color/white" />
+
+        <TextView
+                android:id="@+id/tv_category_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@drawable/button_background"
+                android:gravity="end"
+                android:padding="8dp"
+                android:text="section view"
+                android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/ln_container_all_apps_wise"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/daily_monitor_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/weekly_monitor_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ln_container_category_wise"
+            android:visibility="visible">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoryListRv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+
+</LinearLayout>
