@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import com.egpaid.employeeapp.base.domain.ResultData
 import com.egpaid.employeeapp.base.base.schedulers.TrampolineSchedulerProvider
 import com.egpaid.employeeapp.base.domain.model.ErrorModel
-import com.egpaid.employeeapp.signin.entities.Person
 import com.egpaid.employeeapp.signin.repository.SignInRepo
 import io.reactivex.Observable
 import io.reactivex.Scheduler

@@ -4,9 +4,6 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.egpaid.employeeapp.applock.widget.AppLockWidget
-import com.egpaid.employeeapp.applock.widget.AppLockWidgetImpl
-import com.egpaid.employeeapp.books.injection.BooksFragmentBinding
 import com.egpaid.employeeapp.base.di.qualifier.ForActivity
 import com.egpaid.employeeapp.base.di.scope.PerActivity
 import com.egpaid.employeeapp.base.livedata.SingleLiveData
@@ -25,7 +22,7 @@ import dagger.Provides
 import javax.inject.Named
 
 
-@Module(includes = [BooksFragmentBinding::class])
+@Module
 class SignInActivityModule {
     @Provides
     @PerActivity

@@ -3,11 +3,6 @@ package com.egpaid.employeeapp.repostries
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.egpaid.employeeapp.base.domain.ResultData
 import com.egpaid.employeeapp.base.base.schedulers.TrampolineSchedulerProvider
-import com.egpaid.employeeapp.signin.entities.Meta
-import com.egpaid.employeeapp.signin.entities.Person
-import com.egpaid.employeeapp.signin.entities.RateLimit
-import com.egpaid.employeeapp.signin.entities.ResultItem
-import com.egpaid.employeeapp.signin.local.PersonDao
 import com.egpaid.employeeapp.base.dataservice.remote.RetrofitService
 import com.egpaid.employeeapp.signin.repository.SignInRepoImpl
 import com.egpaid.employeeapp.testutils.fileToGson

@@ -49,7 +49,6 @@ class SigninActivity : AppCompatActivity() {
             observe(onClicked, ::onSignInRequest)
         }
 
-
     }
 
     private fun addWidget(widget: Widget) {
@@ -73,6 +72,10 @@ class SigninActivity : AppCompatActivity() {
         when (loginstate) {
             is BaseViewModel.State.LoginSuccess -> Toast.makeText(this, "Sucess", Toast.LENGTH_LONG)
                 .show()
+
+            is BaseViewModel.State.LoginError -> Toast.makeText(this, "Fail", Toast.LENGTH_LONG)
+                .show()
+
             is BaseViewModel.State.Error -> Toast.makeText(this, "Fail", Toast.LENGTH_LONG)
                 .show()
             else -> {

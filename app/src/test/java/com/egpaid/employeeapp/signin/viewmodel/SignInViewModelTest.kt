@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.egpaid.employeeapp.base.domain.model.ErrorModel
 import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
-import com.egpaid.employeeapp.signin.entities.Person
 import com.egpaid.employeeapp.signin.domain.SignInUseCase
 import org.junit.Before
 import org.junit.Rule

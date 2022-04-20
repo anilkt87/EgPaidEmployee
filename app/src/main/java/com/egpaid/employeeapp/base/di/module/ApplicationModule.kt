@@ -14,7 +14,6 @@ import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 import com.egpaid.employeeapp.base.di.scope.PerApplication
 import com.egpaid.employeeapp.signin.local.MonitorDailyDao
 import com.egpaid.employeeapp.signin.local.MonitorWeeklyDao
-import com.egpaid.employeeapp.signin.local.PersonDao
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -72,9 +71,9 @@ class ApplicationModule {
 //    @Provides
 //    fun providePersonRepoRepo(api: RetrofitService, dao: PersonDao, schedulerProvider: BaseSchedulerProvider,  isTest: Boolean): PersonRepo = PersonRepoImpl(api, dao, schedulerProvider,  isTest)
 
-    @Provides
-    @PerApplication
-    fun providePersonDatabaseDao(database: ApplicationRoomDatabase): PersonDao = database.personDao()
+//    @Provides
+//    @PerApplication
+//    fun providePersonDatabaseDao(database: ApplicationRoomDatabase): PersonDao = database.personDao()
 
     @Provides
     @PerApplication

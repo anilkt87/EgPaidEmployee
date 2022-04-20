@@ -1,12 +1,10 @@
 package com.egpaid.employeeapp.signin.view.widget
 
-import android.app.Person
 import android.content.Context
 import android.view.View
-import com.egpaid.employeeapp.applock.widget.AppLockWidget
 import com.egpaid.employeeapp.base.livedata.SingleLiveData
 import com.egpaid.employeeapp.signin.entities.LoginRequestModel
-import com.egpaid.employeeapp.signin.entities.LoginResponseModel
+import com.egpaid.employeeapp.signin.entities.LoginResponseErrorModel
 import kotlinx.android.synthetic.main.activity_signin.*
 import javax.inject.Inject
 
@@ -20,7 +18,7 @@ class SignInWidgetImpl @Inject constructor(
     override fun showLoading() {
     }
 
-    override fun setContent(content: LoginResponseModel) {
+    override fun setContent(content: LoginResponseErrorModel) {
 
     }
 
