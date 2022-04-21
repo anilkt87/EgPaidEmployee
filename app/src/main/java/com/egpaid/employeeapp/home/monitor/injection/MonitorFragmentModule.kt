@@ -13,8 +13,8 @@ import com.egpaid.employeeapp.base.di.scope.PerFragment
 import com.egpaid.employeeapp.base.livedata.SingleLiveData
 import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 import com.egpaid.employeeapp.home.monitor.view.MonitorFragment
-import com.egpaid.employeeapp.home.monitor.domain.MonitorUseCase
-import com.egpaid.employeeapp.home.monitor.domain.MonitorUseCaseImpl
+import com.egpaid.employeeapp.home.domain.MainActivityUseCase
+import com.egpaid.employeeapp.home.domain.MainActivityUseCaseImpl
 import com.egpaid.employeeapp.home.monitor.viewmdel.MonitorDataViewModel
 import com.egpaid.employeeapp.home.monitor.viewmdel.MonitorDataViewModelFactory
 import com.egpaid.employeeapp.home.monitor.widget.MonitorGraphWidget
@@ -43,7 +43,7 @@ class MonitorFragmentModule {
     }
 
     @Provides
-    internal fun provideUseCase(useCase: MonitorUseCaseImpl): MonitorUseCase = useCase
+    internal fun provideUseCase(useCase: MainActivityUseCaseImpl): MainActivityUseCase = useCase
 
 
     @Provides

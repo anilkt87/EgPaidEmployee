@@ -7,33 +7,34 @@ import androidx.lifecycle.ViewModelProvider
 import com.egpaid.employeeapp.base.di.qualifier.ForActivity
 import com.egpaid.employeeapp.base.di.scope.PerActivity
 import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
-import com.egpaid.employeeapp.home.appsusagemanager.AppsUsageManager
-import com.egpaid.employeeapp.home.homedashboard.injection.HomeFragmentBinding
-import com.egpaid.employeeapp.home.monitor.domain.MonitorUseCase
-import com.egpaid.employeeapp.home.monitor.domain.MonitorUseCaseImpl
+import com.egpaid.employeeapp.home.homedashboard.injection.DrawberFragmentBinding
+import com.egpaid.employeeapp.home.domain.MainActivityUseCase
+import com.egpaid.employeeapp.home.domain.MainActivityUseCaseImpl
 import com.egpaid.employeeapp.home.monitor.injection.MonitorFragmentBinding
 import com.egpaid.employeeapp.home.profile.injection.ProfileFragmentBinding
-import com.egpaid.employeeapp.home.view.HomeActivity
+import com.egpaid.employeeapp.home.repostries.MainActivityRepo
+import com.egpaid.employeeapp.home.repostries.MainActivityRepoImpl
+import com.egpaid.employeeapp.home.view.MainActivity
 import com.egpaid.employeeapp.home.viewmodel.HomeViewModeFactory
 import com.egpaid.employeeapp.home.viewmodel.HomeViewModel
-import com.egpaid.employeeapp.home.viewmodel.HomeViewModelmpl
+import com.egpaid.employeeapp.home.viewmodel.HomeViewModelImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
 
 @Module(
         includes = [
-            HomeFragmentBinding::class,
+            DrawberFragmentBinding::class,
             MonitorFragmentBinding::class,
             ProfileFragmentBinding::class]
 )
-class HomeActivityModule {
+class MainActivityModule {
 
 
     @Provides
     @PerActivity
     @ForActivity
-    fun provideContext(activityInStore: HomeActivity): Context = activityInStore
+    fun provideContext(activityInStore: MainActivity): Context = activityInStore
 
     @PerActivity
     @Provides
@@ -43,27 +44,26 @@ class HomeActivityModule {
     }
 
     @Provides
-    internal fun provideUseCase(useCase: MonitorUseCaseImpl): MonitorUseCase = useCase
+    internal fun provideUseCase(useCase: MainActivityUseCaseImpl): MainActivityUseCase = useCase
 
 
     @Provides
     @PerActivity
     fun provideHomeViewModel(
-            homeActivity: HomeActivity,
-            factory: HomeViewModeFactory
+        mainActivity: MainActivity,
+        factory: HomeViewModeFactory
     ): HomeViewModel =
-            ViewModelProvider(homeActivity, factory).get(HomeViewModel::class.java)
+            ViewModelProvider(mainActivity, factory).get(HomeViewModel::class.java)
 
     @Provides
     @PerActivity
-    fun bindHomeViewModel(homeViewModelmpl: HomeViewModelmpl): ViewModel =
-            homeViewModelmpl
+    fun bindHomeViewModel(homeViewModelImpl: HomeViewModelImpl): ViewModel =
+            homeViewModelImpl
 
     @Provides
     @PerActivity
     fun provideStateLiveData(): MutableLiveData<BaseViewModel.State> = MutableLiveData()
 
     @Provides
-    fun appUsageManager(context: Context) = AppsUsageManager(context)
-
+    fun provideMainRepository(mainActivityRepo: MainActivityRepoImpl): MainActivityRepo = mainActivityRepo
 }

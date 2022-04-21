@@ -78,9 +78,7 @@ class MonitorFragment : Fragment() {
         when (callToAction) {
             is CallToAction.SpinnerClick -> {
                 if (callToAction.value == "Daily") {
-                    monitorDataViewModel.getMonitorData()
                 } else if (callToAction.value == "Weekly") {
-                    monitorDataViewModel.getWeeklyMonitorData()
                 }
             }
 

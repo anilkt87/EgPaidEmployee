@@ -33,4 +33,14 @@
         <item name="android:layout_marginBottom">32dp</item>
     </style>
 
+    <style name="ButtonStyleWithRectangle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/button_background_selector_rectangle</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
 </resources>

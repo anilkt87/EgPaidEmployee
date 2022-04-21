@@ -29,4 +29,13 @@
         <item>Daily</item>
         <item>Weekly</item>
     </string-array>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string-array name="nav_drawer_labels">
+        <item>nav_item_one</item>
+        <item>nav_item_two</item>
+        <item>nav_item_three</item>
+    </string-array>
 </resources>

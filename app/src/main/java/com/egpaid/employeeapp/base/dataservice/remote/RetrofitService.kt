@@ -1,5 +1,6 @@
 package com.egpaid.employeeapp.base.dataservice.remote
 
+import com.egpaid.employeeapp.home.view.entities.HomeModel
 import com.egpaid.employeeapp.signin.entities.AppSettingResponse
 import com.egpaid.employeeapp.signin.entities.LoginRequestModel
 import com.egpaid.employeeapp.signin.entities.LoginResponseSucessModel
@@ -12,4 +13,7 @@ interface RetrofitService {
 
     @GET("crm/appsetting")
     fun getAppSetting(@Header("Authorization") token: String): Single<AppSettingResponse?>
+
+    @GET("crm/mysidebar")
+    fun getMySideBar(@Header("Authorization") token: String): Single<HomeModel?>
 }

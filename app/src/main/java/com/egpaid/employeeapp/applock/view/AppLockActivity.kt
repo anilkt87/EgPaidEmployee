@@ -18,7 +18,7 @@ import com.egpaid.employeeapp.base.extenstion.observe
 import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 import com.egpaid.employeeapp.base.viewmodel.BaseViewModel.State.Success
 import com.egpaid.employeeapp.base.widget.Widget
-import com.egpaid.employeeapp.home.view.HomeActivity
+import com.egpaid.employeeapp.home.view.MainActivity
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.view_app_lock_widget.*
 import javax.inject.Inject
@@ -51,7 +51,7 @@ class AppLockActivity : AppCompatActivity() {
             is BaseViewModel.State.ENTER_PIN -> appLockWidget.displayEnterPin()
             is BaseViewModel.State.INCORRECT_PIN -> appLockWidget.wrongPasswordEntry()
             is Success -> {
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }

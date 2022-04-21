@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/container_monitor"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_monitor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <include
+        layout="@layout/view_daily_monitor_list_widget"
+        android:visibility="gone" />
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-
-
-        <include layout="@layout/view_daily_monitor_list_widget" />
-
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Welcome to Home page \n
+            work is under progress"
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -9,6 +9,7 @@ interface SignInWidget : ContentStateWidget<LoginResponseErrorModel> {
 
     sealed class CallToAction {
         data class ValidateUser(var loginRequest: LoginRequestModel) : CallToAction()
+        object EmptyFiled : CallToAction()
     }
     val onClicked: LiveData<CallToAction>
 }

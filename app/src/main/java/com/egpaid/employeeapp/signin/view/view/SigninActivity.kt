@@ -17,7 +17,8 @@ import kotlinx.android.synthetic.main.activity_signin.*
 import javax.inject.Inject
 import javax.inject.Named
 import com.egpaid.employeeapp.BuildConfig
-
+import com.egpaid.employeeapp.home.view.MainActivity
+import android.content.Intent
 
 class SigninActivity : AppCompatActivity() {
 
@@ -66,13 +67,19 @@ class SigninActivity : AppCompatActivity() {
                     )
                 )
             }
+            is SignInWidget.CallToAction.EmptyFiled ->{
+                Toast.makeText(this,"Please enter Mobile number & Password",Toast.LENGTH_LONG).show()
+            }
+
         }
     }
 
     private fun getLoginResponse(loginstate: BaseViewModel.State) {
         when (loginstate) {
             is BaseViewModel.State.LoginSuccess -> {
-                viewModel.getAppSetting()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+               // viewModel.getAppSetting()
             }
 
             is BaseViewModel.State.LoginError -> Toast.makeText(this, "Fail", Toast.LENGTH_LONG)

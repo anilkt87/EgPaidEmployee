@@ -5,24 +5,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.egpaid.employeeapp.base.apppreferences.AppPreference
 import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
-import com.egpaid.employeeapp.home.appsusagemanager.AppsUsageManager
-import com.egpaid.employeeapp.home.monitor.domain.MonitorUseCase
+import com.egpaid.employeeapp.home.domain.MainActivityUseCase
 import javax.inject.Inject
 
 class HomeViewModeFactory @Inject constructor(
-        private val monitorUseCase: MonitorUseCase,
-        private val stateLiveData: MutableLiveData<BaseViewModel.State>,
-        private val appsUsageManager: AppsUsageManager,
-        private val appPreference: AppPreference
+    private val stateLiveData: MutableLiveData<BaseViewModel.State>,
+    private val appPreference: AppPreference,
+    private val mainActivityUseCase: MainActivityUseCase
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(p0: Class<T>): T {
-        return HomeViewModelmpl(
-                monitorUseCase,
-                stateLiveData,
-                appsUsageManager,
-                appPreference
+        return HomeViewModelImpl(
+            stateLiveData,
+            appPreference,
+            mainActivityUseCase
         ) as T as T
 
     }
