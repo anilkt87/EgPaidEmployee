@@ -2,6 +2,7 @@ package com.egpaid.employeeapp.base.apppreferences
 
 import com.egpaid.employeeapp.home.monitor.entities.Monitor
 import com.egpaid.employeeapp.home.monitor.entities.MonitorWeekly
+import com.egpaid.employeeapp.signin.entities.LoginResponseSucessModel
 
 interface AppPreference {
     var userName: String
@@ -28,4 +29,7 @@ interface AppPreference {
 
     fun saveCategory(data: MutableMap<String, String>)
     fun getCategory(): HashMap<String, String>
+
+    fun saveUserData(userData: LoginResponseSucessModel?)
+    fun getUserData(): LoginResponseSucessModel?
 }

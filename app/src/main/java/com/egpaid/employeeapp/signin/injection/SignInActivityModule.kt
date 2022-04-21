@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.egpaid.employeeapp.base.di.qualifier.ForActivity
 import com.egpaid.employeeapp.base.di.scope.PerActivity
 import com.egpaid.employeeapp.base.livedata.SingleLiveData
+import com.egpaid.employeeapp.signin.domain.AppSettingUseCase
+import com.egpaid.employeeapp.signin.domain.AppSettingUseCaseImpl
 import com.egpaid.employeeapp.signin.domain.GetSignInUseCaseImpl
 import com.egpaid.employeeapp.signin.domain.SignInUseCase
 import com.egpaid.employeeapp.signin.repository.SignInRepo
@@ -49,6 +51,9 @@ class SignInActivityModule {
 
     @Provides
     internal fun provideUseCase(useCase: GetSignInUseCaseImpl): SignInUseCase = useCase
+
+    @Provides
+    internal fun provideAppSettingUseCase(useCase: AppSettingUseCaseImpl): AppSettingUseCase = useCase
 
     @Provides
     internal fun provideMutableLiveData() = MutableLiveData<SignInUseCase.Callback>()

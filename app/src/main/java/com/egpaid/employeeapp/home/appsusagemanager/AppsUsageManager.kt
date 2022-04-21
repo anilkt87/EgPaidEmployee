@@ -46,7 +46,6 @@ class AppsUsageManager(private val context: Context) {
     private fun showAppsUsage(mySortedMap: MutableMap<String, UsageStats>): ArrayList<App> {
 
         val jsonFileString = getJsonDataFromAsset(context, "app_category.json")
-        Log.i("data", jsonFileString)
 
         val gson = Gson()
         val listCategoryType = object : TypeToken<List<Category>>() {}.type

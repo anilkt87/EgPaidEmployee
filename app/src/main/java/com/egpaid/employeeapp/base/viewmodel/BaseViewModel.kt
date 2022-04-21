@@ -3,6 +3,7 @@ package com.egpaid.employeeapp.base.viewmodel
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import com.egpaid.employeeapp.home.monitor.entities.Monitor
+import com.egpaid.employeeapp.signin.entities.AppSettingResponse
 import com.egpaid.employeeapp.signin.entities.LoginResponseErrorModel
 import com.egpaid.employeeapp.signin.entities.LoginResponseSucessModel
 
@@ -24,6 +25,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         object INCORRECT_PIN : State()
         data class LoginSuccess(val loginResponseSucessModel: LoginResponseSucessModel) : State()
         data class LoginError(val loginResponseErrorModel: LoginResponseErrorModel) : State()
+        data class AppSettingSuccess(val appSettingResponse: AppSettingResponse?) : State()
     }
 
 
