@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.egpaid.employeeapp.R
 import com.egpaid.employeeapp.home.homedashboard.entitied.DrawerItem
 import com.egpaid.employeeapp.home.homedashboard.listner.FragmentDrawerListener
+import com.egpaid.employeeapp.home.view.entities.HomeModel
+import com.egpaid.employeeapp.home.view.entities.Submenu
 import kotlinx.android.synthetic.main.nav_drawer_row.view.*
 
-class DrawerAdapter(private val data: List<DrawerItem>, val listener: FragmentDrawerListener) :
+class DrawerAdapter(private val data: ArrayList<Submenu>, val listener: FragmentDrawerListener) :
     RecyclerView.Adapter<DrawerAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view =
@@ -21,7 +23,7 @@ class DrawerAdapter(private val data: List<DrawerItem>, val listener: FragmentDr
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         mClickListener = listener
         val current = data[position]
-        holder.title.text = current.menu?.pagename
+        holder.title.text = current.pagename
     }
 
     override fun getItemCount(): Int {

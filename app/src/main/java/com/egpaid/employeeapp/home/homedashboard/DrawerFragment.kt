@@ -10,24 +10,26 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.egpaid.employeeapp.R
+import com.egpaid.employeeapp.base.extenstion.observe
+import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 import com.egpaid.employeeapp.home.homedashboard.adapter.DrawerAdapter
-import com.egpaid.employeeapp.home.homedashboard.entitied.DrawerItem
+import com.egpaid.employeeapp.home.homedashboard.drawberviewmodel.DrawableViewModel
 import com.egpaid.employeeapp.home.homedashboard.listner.ClickListener
 import com.egpaid.employeeapp.home.homedashboard.listner.FragmentDrawerListener
-import com.egpaid.employeeapp.home.view.entities.Menu
 import com.egpaid.employeeapp.home.view.entities.Submenu
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_drawer.*
+import javax.inject.Inject
 
-class DrawberFragment : Fragment() ,FragmentDrawerListener {
+class DrawerFragment : Fragment(), FragmentDrawerListener {
 
     private lateinit var adapter: DrawerAdapter
-
     private var drawerListener: FragmentDrawerListener? = null
     private var mDrawerLayout: DrawerLayout? = null
     private var containerView: View? = null
 
-
+    @Inject
+    lateinit var drawableViewModel: DrawableViewModel
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
@@ -49,57 +51,11 @@ class DrawberFragment : Fragment() ,FragmentDrawerListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var titles = activity?.resources?.getStringArray(R.array.nav_drawer_labels)
-        val data = ArrayList<DrawerItem>()
-        if (titles != null) {
-            for (i in titles.indices) {
-                val menu = Menu(
-                    1,
-                    usertype = null,
-                    pagename = titles[i],
-                    icon = "",
-                    location = null,
-                    treeview = 0,
-                    parent = null,
-                    orderby = null,
-                    status = 0
-                )
-                val subMenuItem = Submenu(
-                    1,
-                    usertype = null,
-                    pagename = "",
-                    icon = "",
-                    location = null,
-                    treeview = 0,
-                    parent = null,
-                    orderby = null,
-                    status = 0
-                )
-                var arrayListOfSubMenu = arrayListOf<Submenu>()
-                arrayListOfSubMenu.add(subMenuItem)
-                val navItem = DrawerItem(menu, arrayListOfSubMenu)
-                data.add(navItem)
-            }
+
+        drawableViewModel.apply {
+            getMyNaveBarNavPage()
+            observe(stateLiveData, ::getNavSideBarData)
         }
-
-        adapter = DrawerAdapter(data,this)
-        rv_drawer_list.adapter = adapter
-        rv_drawer_list.layoutManager = LinearLayoutManager(activity)
-        rv_drawer_list.addOnItemTouchListener(
-            RecyclerTouchListener(
-                requireContext(),
-                rv_drawer_list,
-                object : ClickListener {
-                    override fun onClick(view: View, position: Int) {
-                        drawerListener?.onDrawerItemSelected(view, position)
-                        containerView?.let { mDrawerLayout?.closeDrawer(it) }
-                    }
-
-                    override fun onLongClick(view: View?, position: Int) {
-
-                    }
-                })
-        )
 
 
 
@@ -175,8 +131,46 @@ class DrawberFragment : Fragment() ,FragmentDrawerListener {
         }
     }
 
+    private fun getNavSideBarData(state: BaseViewModel.State) {
+        when (state) {
+            is BaseViewModel.State.MyNaveBarNavePage -> {
+
+                displayNaveView(state.data)
+            }
+
+        }
+
+    }
+
     override fun onDrawerItemSelected(view: View, position: Int) {
         drawerListener?.onDrawerItemSelected(view, position)
         containerView?.let { mDrawerLayout?.closeDrawer(it) }
     }
+
+    private  fun displayNaveView(data: ArrayList<Submenu> ){
+//      TODO  var titles = activity?.resources?.getStringArray(R.array.nav_drawer_labels)
+
+
+        adapter = DrawerAdapter(data, this)
+        rv_drawer_list.adapter = adapter
+        rv_drawer_list.layoutManager = LinearLayoutManager(activity)
+        rv_drawer_list.addOnItemTouchListener(
+            RecyclerTouchListener(
+                requireContext(),
+                rv_drawer_list,
+                object : ClickListener {
+                    override fun onClick(view: View, position: Int) {
+                        drawerListener?.onDrawerItemSelected(view, position)
+                        containerView?.let { mDrawerLayout?.closeDrawer(it) }
+                    }
+
+                    override fun onLongClick(view: View?, position: Int) {
+
+                    }
+                })
+        )
+
+    }
 }
+
+

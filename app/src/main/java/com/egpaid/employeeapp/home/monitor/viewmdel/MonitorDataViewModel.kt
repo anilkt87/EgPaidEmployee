@@ -6,5 +6,5 @@ import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 abstract class MonitorDataViewModel :BaseViewModel() {
 
     abstract val stateLiveData: LiveData<State>
-
+    abstract fun getMySideBarOnHomePageItem()
 }

@@ -1,7 +1,7 @@
 package com.egpaid.employeeapp.home.homedashboard.injection
 
 import com.egpaid.employeeapp.base.di.scope.PerFragment
-import com.egpaid.employeeapp.home.homedashboard.DrawberFragment
+import com.egpaid.employeeapp.home.homedashboard.DrawerFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -9,5 +9,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class DrawberFragmentBinding {
     @PerFragment
     @ContributesAndroidInjector(modules = [DrawberFragmentModul::class])
-    abstract fun bindHomeFragmentFragment(): DrawberFragment
+    abstract fun bindHomeFragmentFragment(): DrawerFragment
 }

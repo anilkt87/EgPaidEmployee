@@ -4,5 +4,5 @@ import com.egpaid.employeeapp.home.view.entities.HomeModel
 import io.reactivex.Single
 
 interface MainActivityRepo {
-    fun getMyAppSideBar(token: String): Single<HomeModel?>
+    fun getMyAppSideBar(token: String): Single<List<HomeModel>>
 }

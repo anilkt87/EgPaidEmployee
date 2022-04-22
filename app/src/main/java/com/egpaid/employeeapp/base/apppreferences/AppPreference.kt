@@ -2,6 +2,7 @@ package com.egpaid.employeeapp.base.apppreferences
 
 import com.egpaid.employeeapp.home.monitor.entities.Monitor
 import com.egpaid.employeeapp.home.monitor.entities.MonitorWeekly
+import com.egpaid.employeeapp.home.view.entities.HomeModel
 import com.egpaid.employeeapp.signin.entities.LoginResponseSucessModel
 
 interface AppPreference {
@@ -32,4 +33,7 @@ interface AppPreference {
 
     fun saveUserData(userData: LoginResponseSucessModel?)
     fun getUserData(): LoginResponseSucessModel?
+
+    fun saveMySideBarData(home: List<HomeModel>)
+    fun getGetSideBarData(): List<HomeModel>
 }

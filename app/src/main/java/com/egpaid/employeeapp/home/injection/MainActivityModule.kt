@@ -10,7 +10,7 @@ import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 import com.egpaid.employeeapp.home.homedashboard.injection.DrawberFragmentBinding
 import com.egpaid.employeeapp.home.domain.MainActivityUseCase
 import com.egpaid.employeeapp.home.domain.MainActivityUseCaseImpl
-import com.egpaid.employeeapp.home.monitor.injection.MonitorFragmentBinding
+import com.egpaid.employeeapp.home.monitor.injection.HomeFragmentBinding
 import com.egpaid.employeeapp.home.profile.injection.ProfileFragmentBinding
 import com.egpaid.employeeapp.home.repostries.MainActivityRepo
 import com.egpaid.employeeapp.home.repostries.MainActivityRepoImpl
@@ -25,7 +25,7 @@ import javax.inject.Named
 @Module(
         includes = [
             DrawberFragmentBinding::class,
-            MonitorFragmentBinding::class,
+            HomeFragmentBinding::class,
             ProfileFragmentBinding::class]
 )
 class MainActivityModule {

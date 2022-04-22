@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.egpaid.employeeapp.base.apppreferences.AppPreference
 import com.egpaid.employeeapp.home.domain.MainActivityUseCase
 import com.egpaid.employeeapp.home.view.entities.HomeModel
+import io.reactivex.Single
 import javax.inject.Inject
 
 class HomeViewModelImpl @Inject constructor(
@@ -15,6 +16,7 @@ class HomeViewModelImpl @Inject constructor(
 
     init {
         mainActivityUseCase.setCallback(this)
+        stateLiveData.value = State.Loading
     }
 
     override fun getMyAppSideBar() {
@@ -22,12 +24,14 @@ class HomeViewModelImpl @Inject constructor(
         mainActivityUseCase.execute(token.toString())
     }
 
-    override fun onMySideBarSuccess(responseError: HomeModel?) {
-       Log.d("Response","Sucess")
+
+    override fun onMySideBarSuccess(response: List<HomeModel>) {
+        appPreference.saveMySideBarData(response)
+        stateLiveData.value = State.MySideBarData(response)
     }
 
     override fun onMySideBarError(error: Throwable) {
-        Log.d("Response","Error")
+        stateLiveData.value = State.Error(error)
     }
 
 

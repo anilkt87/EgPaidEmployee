@@ -3,6 +3,9 @@ package com.egpaid.employeeapp.base.viewmodel
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import com.egpaid.employeeapp.home.monitor.entities.Monitor
+import com.egpaid.employeeapp.home.view.entities.HomeModel
+import com.egpaid.employeeapp.home.view.entities.Submenu
+import com.egpaid.employeeapp.home.viewmodel.HomeViewModel
 import com.egpaid.employeeapp.signin.entities.AppSettingResponse
 import com.egpaid.employeeapp.signin.entities.LoginResponseErrorModel
 import com.egpaid.employeeapp.signin.entities.LoginResponseSucessModel
@@ -26,6 +29,9 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         data class LoginSuccess(val loginResponseSucessModel: LoginResponseSucessModel) : State()
         data class LoginError(val loginResponseErrorModel: LoginResponseErrorModel) : State()
         data class AppSettingSuccess(val appSettingResponse: AppSettingResponse?) : State()
+        data class MySideBarData(val homeViewModel: List<HomeModel>) : State()
+        data class MySideBarHomePage(val data: List<HomeModel>) : State()
+        data class MyNaveBarNavePage(val data: ArrayList<Submenu>) : State()
     }
 
 

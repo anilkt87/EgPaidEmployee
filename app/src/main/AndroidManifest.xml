@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".splash.SplashActivity"
+            android:name=".home.view.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".signin.view.view.SigninActivity" />
-        <activity android:name=".home.view.MainActivity" />
+<!--        <activity android:name=".home.view.MainActivity" />-->
         <!-- The below code is for android OS version below N -->
         <receiver
             android:name="com.egpaid.employeeapp.base.network.ConnectivityReceiver"

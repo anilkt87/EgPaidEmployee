@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class MainActivityRepoImpl @Inject constructor(
     val api: RetrofitService) : MainActivityRepo {
-    override fun getMyAppSideBar(token: String): Single<HomeModel?> {
+    override fun getMyAppSideBar(token: String): Single<List<HomeModel>> {
         return  api.getMySideBar(token)
     }
 }

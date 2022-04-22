@@ -15,5 +15,5 @@ interface RetrofitService {
     fun getAppSetting(@Header("Authorization") token: String): Single<AppSettingResponse?>
 
     @GET("crm/mysidebar")
-    fun getMySideBar(@Header("Authorization") token: String): Single<HomeModel?>
+    fun getMySideBar(@Header("Authorization") token: String): Single<List<HomeModel>>
 }
