@@ -7,6 +7,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.egpaid.employeeapp.base.di.qualifier.ForActivity
 import com.egpaid.employeeapp.base.di.scope.PerActivity
 import com.egpaid.employeeapp.base.livedata.SingleLiveData
+import com.egpaid.employeeapp.home.domain.MainActivityUseCase
+import com.egpaid.employeeapp.home.domain.MainActivityUseCaseImpl
+import com.egpaid.employeeapp.home.repostries.MainActivityRepo
+import com.egpaid.employeeapp.home.repostries.MainActivityRepoImpl
 import com.egpaid.employeeapp.signin.domain.AppSettingUseCase
 import com.egpaid.employeeapp.signin.domain.AppSettingUseCaseImpl
 import com.egpaid.employeeapp.signin.domain.GetSignInUseCaseImpl
@@ -34,7 +38,7 @@ class SignInActivityModule {
 
     @Provides
     @PerActivity
-    fun providePersonViewModel(
+    fun provideViewModel(
         signinActivity: SigninActivity,
         factory: SignInViewModelFactory
     ): SignInViewModel =
@@ -42,28 +46,36 @@ class SignInActivityModule {
 
     @Provides
     @PerActivity
-    fun bindPersonViewModel(personViewModelImpl: SignInViewModelImpl): ViewModel =
+    fun bindSigninViewModel(personViewModelImpl: SignInViewModelImpl): ViewModel =
         personViewModelImpl
 
     @Provides
     @PerActivity
-    fun providePersonWidget(personWidget: SignInWidgetImpl): SignInWidget = personWidget
+    fun provideSigninWidget(personWidget: SignInWidgetImpl): SignInWidget = personWidget
 
     @Provides
-    internal fun provideUseCase(useCase: GetSignInUseCaseImpl): SignInUseCase = useCase
+    internal fun provideSigninUseCase(useCase: GetSignInUseCaseImpl): SignInUseCase = useCase
 
     @Provides
-    internal fun provideAppSettingUseCase(useCase: AppSettingUseCaseImpl): AppSettingUseCase = useCase
+    internal fun provideAppSettingUseCase(useCase: AppSettingUseCaseImpl): AppSettingUseCase =
+        useCase
 
     @Provides
     internal fun provideMutableLiveData() = MutableLiveData<SignInUseCase.Callback>()
 
     @Provides
-    fun providePersonRepository(personRepository: SignInRepoImpl): SignInRepo = personRepository
+    fun provideSigninRepository(personRepository: SignInRepoImpl): SignInRepo = personRepository
 
     @Provides
     @PerActivity
     fun provideOnClickedLiveData(): SingleLiveData<SignInWidget.CallToAction> = SingleLiveData()
+
+    @Provides
+    internal fun provideUseCase(useCase: MainActivityUseCaseImpl): MainActivityUseCase = useCase
+
+    @Provides
+    fun provideMainRepository(mainActivityRepo: MainActivityRepoImpl): MainActivityRepo =
+        mainActivityRepo
 
     @PerActivity
     @Provides

@@ -7,18 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.viewpager.widget.ViewPager
 import com.egpaid.employeeapp.R
 import com.egpaid.employeeapp.base.extenstion.observe
 import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
+import com.egpaid.employeeapp.home.homedashboard.adapter.MyGridViewAdapter
+import com.egpaid.employeeapp.home.homedashboard.listner.GrdViewListener
+import com.egpaid.employeeapp.home.monitor.viewmdel.MonitorDataViewModel
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_monitor.*
-import com.egpaid.employeeapp.home.homedashboard.adapter.*
-import com.egpaid.employeeapp.home.monitor.viewmdel.MonitorDataViewModel
 import javax.inject.Inject
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), GrdViewListener {
 
     @Inject
     lateinit var monitorDataViewModel: MonitorDataViewModel
@@ -53,29 +53,18 @@ class HomeFragment : Fragment() {
 
                 recyclerView.layoutManager = GridLayoutManager(context, 2)
 
-                recyclerView.adapter = MyGridViewAdapter(state.data)
+                recyclerView.adapter = MyGridViewAdapter(requireContext(), state.data, this)
             }
 
+            else -> {
+
+            }
         }
 
     }
 
-    private fun setupViewPager(pager: ViewPager?) {
-        val adapter = activity?.supportFragmentManager?.let {
-            TabAdapter(
-                it
-            )
-        }
-
-        val f1 = AddDynamicFragment.newInstance("Home")
-        adapter?.addFragment(f1, "Home")
-
-        val f2 = AddDynamicFragment.newInstance("Dashboard")
-        adapter?.addFragment(f2, "Dashboard")
-
-        val f3 = AddDynamicFragment.newInstance("Profile")
-        adapter?.addFragment(f3, "Profile")
-
-        pager?.adapter = adapter
+    override fun onHomeItemSelected(view: View, position: Int) {
+        TODO("Not yet implemented")
     }
+
 }

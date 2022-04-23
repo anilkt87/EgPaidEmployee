@@ -11,7 +11,6 @@ import com.egpaid.employeeapp.home.homedashboard.injection.DrawberFragmentBindin
 import com.egpaid.employeeapp.home.domain.MainActivityUseCase
 import com.egpaid.employeeapp.home.domain.MainActivityUseCaseImpl
 import com.egpaid.employeeapp.home.monitor.injection.HomeFragmentBinding
-import com.egpaid.employeeapp.home.profile.injection.ProfileFragmentBinding
 import com.egpaid.employeeapp.home.repostries.MainActivityRepo
 import com.egpaid.employeeapp.home.repostries.MainActivityRepoImpl
 import com.egpaid.employeeapp.home.view.MainActivity
@@ -23,10 +22,9 @@ import dagger.Provides
 import javax.inject.Named
 
 @Module(
-        includes = [
-            DrawberFragmentBinding::class,
-            HomeFragmentBinding::class,
-            ProfileFragmentBinding::class]
+    includes = [
+        DrawberFragmentBinding::class,
+        HomeFragmentBinding::class]
 )
 class MainActivityModule {
 
@@ -46,6 +44,9 @@ class MainActivityModule {
     @Provides
     internal fun provideUseCase(useCase: MainActivityUseCaseImpl): MainActivityUseCase = useCase
 
+    @Provides
+    fun provideMainRepository(mainActivityRepo: MainActivityRepoImpl): MainActivityRepo =
+        mainActivityRepo
 
     @Provides
     @PerActivity
@@ -53,17 +54,16 @@ class MainActivityModule {
         mainActivity: MainActivity,
         factory: HomeViewModeFactory
     ): HomeViewModel =
-            ViewModelProvider(mainActivity, factory).get(HomeViewModel::class.java)
+        ViewModelProvider(mainActivity, factory).get(HomeViewModel::class.java)
 
     @Provides
     @PerActivity
     fun bindHomeViewModel(homeViewModelImpl: HomeViewModelImpl): ViewModel =
-            homeViewModelImpl
+        homeViewModelImpl
 
     @Provides
     @PerActivity
     fun provideStateLiveData(): MutableLiveData<BaseViewModel.State> = MutableLiveData()
 
-    @Provides
-    fun provideMainRepository(mainActivityRepo: MainActivityRepoImpl): MainActivityRepo = mainActivityRepo
+
 }

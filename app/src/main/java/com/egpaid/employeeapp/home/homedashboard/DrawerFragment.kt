@@ -151,7 +151,7 @@ class DrawerFragment : Fragment(), FragmentDrawerListener {
 //      TODO  var titles = activity?.resources?.getStringArray(R.array.nav_drawer_labels)
 
 
-        adapter = DrawerAdapter(data, this)
+        adapter = DrawerAdapter(requireContext(),data, this)
         rv_drawer_list.adapter = adapter
         rv_drawer_list.layoutManager = LinearLayoutManager(activity)
         rv_drawer_list.addOnItemTouchListener(

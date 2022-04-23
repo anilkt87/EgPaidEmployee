@@ -19,12 +19,12 @@ class SlidingImageAdapter(private val context: Context, private val welcomedata:
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         imageLayout = layoutInflater.inflate(R.layout.the_items_layout, container, false)
-        val featuredImage: ImageView = imageLayout.findViewById(R.id.my_featured_image)
-        val featuredText : TextView =   imageLayout.findViewById(R.id.my_festured_desc)
-        val welcomeModel : WelcomeModel = welcomedata[position]
-        featuredImage.setImageResource(welcomeModel.screenimage!!)
-        featuredText.text = welcomeModel.desc
-        container.addView(imageLayout, 0)
+//        val featuredImage: ImageView = imageLayout.findViewById(R.id.my_featured_image)
+//        val featuredText : TextView =   imageLayout.findViewById(R.id.my_festured_desc)
+//        val welcomeModel : WelcomeModel = welcomedata[position]
+//        featuredImage.setImageResource(welcomeModel.screenimage!!)
+//        featuredText.text = welcomeModel.desc
+//        container.addView(imageLayout, 0)
         return imageLayout
     }
 

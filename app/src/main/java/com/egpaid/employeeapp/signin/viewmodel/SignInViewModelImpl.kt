@@ -2,6 +2,8 @@ package com.egpaid.employeeapp.signin.viewmodel
 
 import androidx.lifecycle.MediatorLiveData
 import com.egpaid.employeeapp.base.apppreferences.AppPreference
+import com.egpaid.employeeapp.home.domain.MainActivityUseCase
+import com.egpaid.employeeapp.home.view.entities.HomeModel
 import com.egpaid.employeeapp.signin.domain.AppSettingUseCase
 import com.egpaid.employeeapp.signin.domain.SignInUseCase
 import com.egpaid.employeeapp.signin.entities.AppSettingResponse
@@ -14,11 +16,14 @@ class SignInViewModelImpl @Inject constructor(
     private val getSignInUseCase: SignInUseCase,
     override val signInLiveData: MediatorLiveData<State>,
     private val appSettingUseCase: AppSettingUseCase,
+    private val mainActivityUseCase: MainActivityUseCase,
     val appPreference: AppPreference
-) : SignInViewModel(), SignInUseCase.Callback, AppSettingUseCase.Callback {
+) : SignInViewModel(), SignInUseCase.Callback, AppSettingUseCase.Callback,
+    MainActivityUseCase.Callback {
     init {
         getSignInUseCase.setCallback(this)
         appSettingUseCase.setCallback(this)
+        mainActivityUseCase.setCallback(this)
     }
 
     override fun getLoginData(loginRequestModel: LoginRequestModel) {
@@ -28,6 +33,11 @@ class SignInViewModelImpl @Inject constructor(
     override fun getAppSetting() {
         val token = appPreference.getUserData()?.token
         appSettingUseCase.execute(token.toString())
+    }
+
+    override fun getMyAppSideBarFromAPI() {
+        val token = appPreference.getUserData()?.token
+        mainActivityUseCase.execute(token.toString())
     }
 
     override fun onLoginSuccess(response: LoginResponseSucessModel?) {
@@ -55,6 +65,15 @@ class SignInViewModelImpl @Inject constructor(
     }
 
     override fun onAppSettingError(error: Throwable) {
+        signInLiveData.value = State.Error(error)
+    }
+
+    override fun onMySideBarSuccess(response: List<HomeModel>) {
+        appPreference.saveMySideBarData(response)
+        signInLiveData.value = State.MySideBarData(appPreference.getGetSideBarData())
+    }
+
+    override fun onMySideBarError(error: Throwable) {
         signInLiveData.value = State.Error(error)
     }
 

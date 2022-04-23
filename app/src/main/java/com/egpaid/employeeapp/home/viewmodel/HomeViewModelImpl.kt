@@ -27,7 +27,7 @@ class HomeViewModelImpl @Inject constructor(
 
     override fun onMySideBarSuccess(response: List<HomeModel>) {
         appPreference.saveMySideBarData(response)
-        stateLiveData.value = State.MySideBarData(response)
+        stateLiveData.value = State.MySideBarData(appPreference.getGetSideBarData())
     }
 
     override fun onMySideBarError(error: Throwable) {

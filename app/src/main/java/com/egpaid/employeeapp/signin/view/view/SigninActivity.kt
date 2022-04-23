@@ -67,8 +67,9 @@ class SigninActivity : AppCompatActivity() {
                     )
                 )
             }
-            is SignInWidget.CallToAction.EmptyFiled ->{
-                Toast.makeText(this,"Please enter Mobile number & Password",Toast.LENGTH_LONG).show()
+            is SignInWidget.CallToAction.EmptyFiled -> {
+                Toast.makeText(this, "Please enter Mobile number & Password", Toast.LENGTH_LONG)
+                    .show()
             }
 
         }
@@ -77,14 +78,17 @@ class SigninActivity : AppCompatActivity() {
     private fun getLoginResponse(loginstate: BaseViewModel.State) {
         when (loginstate) {
             is BaseViewModel.State.LoginSuccess -> {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-               // viewModel.getAppSetting()
+                viewModel.getMyAppSideBarFromAPI()
             }
 
             is BaseViewModel.State.LoginError -> Toast.makeText(this, "Fail", Toast.LENGTH_LONG)
                 .show()
             is BaseViewModel.State.Error -> Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show()
+            is BaseViewModel.State.MySideBarData -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                // viewModel.getAppSetting()
+            }
             is BaseViewModel.State.AppSettingSuccess -> {
                 val versionCode: Int = BuildConfig.VERSION_CODE
                 val versionName: String = BuildConfig.VERSION_NAME

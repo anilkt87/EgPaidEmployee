@@ -1,5 +1,6 @@
 package com.egpaid.employeeapp.home.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +12,7 @@ import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 import com.egpaid.employeeapp.home.homedashboard.DrawerFragment
 import com.egpaid.employeeapp.home.homedashboard.listner.FragmentDrawerListener
 import com.egpaid.employeeapp.home.monitor.view.HomeFragment
-import com.egpaid.employeeapp.home.profile.ProfileFragment
+import com.egpaid.employeeapp.menuitem.view.MenuActivity
 import com.egpaid.employeeapp.home.viewmodel.HomeViewModel
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity(), FragmentDrawerListener {
         }
 
     }
+
 
     private fun getMySideBarData(state: BaseViewModel.State) {
         when (state) {
@@ -72,25 +74,26 @@ class MainActivity : AppCompatActivity(), FragmentDrawerListener {
     }
 
     private fun displayView(position: Int) {
-        var fragment: Fragment? = null
-        var title = getString(R.string.app_name)
+
         when (position) {
             0 -> {
-                fragment = HomeFragment()
-                title = "Monitor" //getString(R.string.nav_item_one)
-            }
-            1 -> {
-                fragment = ProfileFragment()
-                title = "Profile"//getString(R.string.nav_item_two)
-            }
-            2 -> {
-//                fragment = CFragment()
-//                title = getString(R.string.nav_item_three)
+                showDefaultPage()
             }
             else -> {
+                val bundle = Bundle()
+                bundle.putInt("menuItemPosition", position - 1)
+                val intent = Intent(this, MenuActivity::class.java)
+                intent.putExtras(bundle)
+                startActivity(intent)
             }
         }
+    }
 
+    private fun showDefaultPage() {
+        var fragment: Fragment? = null
+        var title = getString(R.string.app_name)
+        fragment = HomeFragment()
+        title = "Home" //getString(R.string.nav_item_one)
         if (fragment != null) {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()

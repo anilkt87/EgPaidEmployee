@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,7 +13,7 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.drawerlayout.widget.DrawerLayout xmlns:local="http://schemas.android.com/apk/res-auto"
+        <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -39,6 +40,15 @@
 
             </LinearLayout>
 
+<!--            <fragment-->
+<!--                android:id="@+id/fragment_navigation_drawer"-->
+<!--                class="com.egpaid.employeeapp.home.homedashboard.DrawerFragment"-->
+<!--                android:layout_width="260dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_gravity="start"-->
+<!--                app:layout="@layout/fragment_drawer"-->
+<!--                tools:layout="@layout/fragment_drawer" />-->
+
             <fragment
                 android:id="@+id/fragment_navigation_drawer"
                 android:name="com.egpaid.employeeapp.home.homedashboard.DrawerFragment"
@@ -46,7 +56,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 app:layout="@layout/fragment_drawer"
-                tools:layout="@layout/fragment_drawer" />
+                tools:layout="@layout/fragment_drawer"/>
+
 
         </androidx.drawerlayout.widget.DrawerLayout>
 

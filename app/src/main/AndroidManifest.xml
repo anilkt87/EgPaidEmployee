@@ -5,9 +5,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
+
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
 
     <application
         android:name="com.egpaid.employeeapp.base.MainApplication"
@@ -29,6 +33,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".signin.view.view.SigninActivity" />
+        <activity android:name=".menuitem.view.MenuActivity"/>
+
+
 <!--        <activity android:name=".home.view.MainActivity" />-->
         <!-- The below code is for android OS version below N -->
         <receiver

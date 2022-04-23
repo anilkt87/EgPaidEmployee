@@ -29,9 +29,10 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         data class LoginSuccess(val loginResponseSucessModel: LoginResponseSucessModel) : State()
         data class LoginError(val loginResponseErrorModel: LoginResponseErrorModel) : State()
         data class AppSettingSuccess(val appSettingResponse: AppSettingResponse?) : State()
-        data class MySideBarData(val homeViewModel: List<HomeModel>) : State()
+        data class MySideBarData(val data: List<HomeModel>) : State()
         data class MySideBarHomePage(val data: List<HomeModel>) : State()
         data class MyNaveBarNavePage(val data: ArrayList<Submenu>) : State()
+        data class MyNavBarDetailPage(val data: Submenu) : State()
     }
 
 
