@@ -33,7 +33,7 @@ class SignInActivityModule {
     @Provides
     @PerActivity
     @ForActivity
-    fun provideContext(activityInStore: SigninActivity): Context = activityInStore
+    fun provideContext(activitySignIn: SigninActivity): Context = activitySignIn
 
 
     @Provides

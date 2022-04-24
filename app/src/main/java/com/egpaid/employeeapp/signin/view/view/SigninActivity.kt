@@ -19,6 +19,7 @@ import javax.inject.Named
 import com.egpaid.employeeapp.BuildConfig
 import com.egpaid.employeeapp.home.view.MainActivity
 import android.content.Intent
+import com.egpaid.employeeapp.applock.view.AppLockActivity
 
 class SigninActivity : AppCompatActivity() {
 
@@ -38,6 +39,7 @@ class SigninActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signin)
         initWidget(container_sign_in)
         viewModel.apply {
+            checkAlreadySignIn()
             observe(signInLiveData, ::getLoginResponse)
         }
 
@@ -80,14 +82,24 @@ class SigninActivity : AppCompatActivity() {
             is BaseViewModel.State.LoginSuccess -> {
                 viewModel.getMyAppSideBarFromAPI()
             }
-
+            is BaseViewModel.State.AlreadySignIn -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            is BaseViewModel.State.RedirectToAppLocaPage -> {
+                val intent = Intent(this, AppLockActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
             is BaseViewModel.State.LoginError -> Toast.makeText(this, "Fail", Toast.LENGTH_LONG)
                 .show()
             is BaseViewModel.State.Error -> Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show()
             is BaseViewModel.State.MySideBarData -> {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                // viewModel.getAppSetting()
+                viewModel.getProfile()
+            }
+            is BaseViewModel.State.Loading -> {
+                signInWidget.showLoading()
             }
             is BaseViewModel.State.AppSettingSuccess -> {
                 val versionCode: Int = BuildConfig.VERSION_CODE
@@ -100,6 +112,12 @@ class SigninActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Please update version", Toast.LENGTH_LONG).show()
                 }
+            }
+
+            is BaseViewModel.State.MyProfileResponse -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                signInWidget.hideProgressBar()
             }
             else -> {
 

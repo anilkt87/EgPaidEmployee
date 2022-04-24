@@ -1,0 +1,49 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_register_pin"
+    android:visibility="gone"
+    tools:visibility="visible"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/dp_16"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/et_enter_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_16"
+        android:ems="4"
+        android:hint="Please enter 4 digit pin"
+        android:inputType="numberPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_enter_confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_16"
+        android:ems="10"
+        android:hint="Please enter confirm Password"
+        android:inputType="numberPassword"
+        app:layout_constraintEnd_toEndOf="@+id/et_enter_password"
+        app:layout_constraintStart_toStartOf="@+id/et_enter_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_enter_password" />
+
+    <TextView
+        android:id="@+id/btn_register_pin"
+        style="@style/ButtonStyleWithRectangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_16"
+        android:text="Register"
+        app:layout_constraintEnd_toEndOf="@+id/et_enter_confirm_password"
+        app:layout_constraintStart_toStartOf="@+id/et_enter_confirm_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_enter_confirm_password" />
+</androidx.constraintlayout.widget.ConstraintLayout>

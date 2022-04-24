@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_security_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_yellow">
+
+            <TextView
+                android:id="@+id/tv_go_to_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_back_button_new"
+                android:drawablePadding="@dimen/dp_16"
+                android:gravity="center"
+                android:padding="@dimen/dp_16"
+                android:text="App security"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tfl_24sp" />
+        </LinearLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/app_security_main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/txt_enable_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_16"
+                android:text="Enable Pin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_enable_pattern"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_16"
+                android:text="Enable Pattern"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_enable_pin" />
+
+            <TextView
+                android:id="@+id/tx_enable_biomeeric"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_16"
+                android:text="Enable Biometric"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_enable_pattern" />
+
+            <TextView
+                android:id="@+id/txt_enable_pin_stats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_16"
+                android:text="Selected"
+                android:textColor="@color/color_blue"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_enable_pin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/txt_pattern_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected"
+                android:padding="@dimen/dp_16"
+                android:textColor="@color/color_blue"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_enable_pattern"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_enable_pin_stats" />
+
+            <TextView
+                android:id="@+id/txt_biometric_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected"
+                android:padding="@dimen/dp_16"
+                android:textColor="@color/color_blue"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/tx_enable_biomeeric"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_pattern_status" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include layout="@layout/view_register_pin"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

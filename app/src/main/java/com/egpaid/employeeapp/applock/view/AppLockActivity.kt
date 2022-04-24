@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
@@ -20,6 +21,7 @@ import com.egpaid.employeeapp.base.viewmodel.BaseViewModel.State.Success
 import com.egpaid.employeeapp.base.widget.Widget
 import com.egpaid.employeeapp.home.view.MainActivity
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.activity_app_lock.*
 import kotlinx.android.synthetic.main.view_app_lock_widget.*
 import javax.inject.Inject
 
@@ -37,22 +39,28 @@ class AppLockActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         setContentView(R.layout.activity_app_lock)
-        initWidget(app_lock_enter_pin_container)
+        initWidget(app_lock_enter_option)
         appLockViewModel.apply {
             observe(pinStateLiveData, ::GetAppLockState)
         }
 
-        // we will Do Next Version  showBiometricPromptForEncryption()
     }
 
     private fun GetAppLockState(state: BaseViewModel.State) {
         when (state) {
-            is BaseViewModel.State.CREATE_PIN -> appLockWidget.displayCreatePin()
-            is BaseViewModel.State.ENTER_PIN -> appLockWidget.displayEnterPin()
-            is BaseViewModel.State.INCORRECT_PIN -> appLockWidget.wrongPasswordEntry()
+            is BaseViewModel.State.PinOption -> appLockWidget.displayEnterPin()
+            is BaseViewModel.State.PatternOption -> appLockWidget.displayPatternOption()
+            is BaseViewModel.State.BiometricOption -> appLockWidget.displayBiometricOption()
+            is BaseViewModel.State.INCORRECT_PIN -> {
+                Toast.makeText(this, "Enter correct Pin", Toast.LENGTH_LONG).show()
+            }
             is Success -> {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
+            }
+            else -> {
+
             }
         }
     }
@@ -61,11 +69,8 @@ class AppLockActivity : AppCompatActivity() {
         appLockWidget.apply {
             initView(view)
             addWidget(this)
-            show()
             observe(onClicked, ::onCreatePinClick)
         }
-
-
     }
 
     private fun addWidget(widget: Widget) {
@@ -76,12 +81,6 @@ class AppLockActivity : AppCompatActivity() {
         when (callAction) {
             is CallToAction.ValidateDigit -> {
                 appLockViewModel.validatePin(callAction.digitValue)
-            }
-            is CallToAction.CreatePassword -> {
-                appLockViewModel.saveAppLockPin(callAction.password)
-            }
-            is CallToAction.ChangePassword ->{
-                appLockViewModel.changePassword(callAction.oldPassword,callAction.newpassword)
             }
             else -> {
 

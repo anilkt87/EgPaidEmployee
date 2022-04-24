@@ -10,4 +10,6 @@ abstract class SignInViewModel :BaseViewModel() {
     abstract fun getLoginData(loginRequestModel: LoginRequestModel)
     abstract fun getAppSetting()
     abstract fun getMyAppSideBarFromAPI()
+    abstract fun getProfile()
+    abstract fun checkAlreadySignIn()
 }

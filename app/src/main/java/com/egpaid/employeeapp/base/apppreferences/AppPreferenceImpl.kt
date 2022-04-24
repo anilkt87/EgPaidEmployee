@@ -4,6 +4,7 @@ import android.content.Context
 import com.egpaid.employeeapp.home.monitor.entities.Monitor
 import com.egpaid.employeeapp.home.monitor.entities.MonitorWeekly
 import com.egpaid.employeeapp.home.view.entities.HomeModel
+import com.egpaid.employeeapp.home.view.entities.myprofile.MyProfile
 import com.egpaid.employeeapp.signin.entities.LoginResponseSucessModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -21,25 +22,13 @@ class AppPreferenceImpl @Inject constructor(context: Context) : AppPreference {
         const val APP_CATEGORY = "app_category"
         const val USER_RESPONSE_DATA = "user_response_data"
         const val MY_SIDE_BAR_DATA = "mysidebardata"
+        const val USER_PROFILE_DATA = "myprofileData"
+        const val APP_SECURTIY_OPTION = "app_security_option"
     }
 
     private var preference = context.getSharedPreferences("dagger-pref", Context.MODE_PRIVATE)
     private var editor = preference.edit()
 
-    override var userName: String
-        get() = getString(USER_NAME)
-        set(value) {
-            saveString(USER_NAME, value)
-        }
-
-
-    override fun getWebsite(): String {
-        return getString(WEBSITE)
-    }
-
-    override fun setWebsite(website: String) {
-        saveString(WEBSITE, website)
-    }
 
     override fun saveAppLockPin(pin: String) {
         editor.putString(APP_LOCK_PIN, pin).apply()
@@ -49,11 +38,6 @@ class AppPreferenceImpl @Inject constructor(context: Context) : AppPreference {
         return preference.getString(APP_LOCK_PIN, "") ?: ""
     }
 
-    override var isChildMode: Boolean
-        get() = getBoolean(IS_CHILD_MODE)
-        set(value) {
-            saveBoolean(IS_CHILD_MODE, value)
-        }
 
     private fun saveString(key: String, value: String) {
         editor.putString(key, value).apply()
@@ -69,59 +53,6 @@ class AppPreferenceImpl @Inject constructor(context: Context) : AppPreference {
 
     private fun getBoolean(key: String): Boolean {
         return preference.getBoolean(key, false) ?: false
-    }
-
-
-    override fun saveLastMonitorData(data: List<Monitor>) {
-        val gson = Gson()
-        val json = gson.toJson(data)
-        editor.putString(LAST_MONITOR_DATA, json).apply()
-    }
-
-    override fun getLastMonitorData(): List<Monitor> {
-
-        val gson = Gson()
-        val json = preference.getString(LAST_MONITOR_DATA, "")
-        val type = object : TypeToken<List<Monitor?>?>() {}.type
-        return gson.fromJson(json, type)
-    }
-
-    override fun clearMonitorData() {
-        editor.remove(LAST_MONITOR_DATA).apply()
-
-    }
-
-    override fun saveLastWeeklyMonitorData(data: List<MonitorWeekly>) {
-        val gson = Gson()
-        val json = gson.toJson(data)
-        editor.putString(LAST_MONITOR_WEEKLY_DATA, json).apply()
-    }
-
-    override fun getLastWeeklyMonitorData(): List<MonitorWeekly> {
-        val gson = Gson()
-        val json = preference.getString(LAST_MONITOR_WEEKLY_DATA, "")
-        val type = object : TypeToken<List<MonitorWeekly?>?>() {}.type
-        return gson.fromJson(json, type)
-    }
-
-    override fun clearWeeklyMonitorData() {
-        editor.remove(LAST_MONITOR_WEEKLY_DATA).apply()
-    }
-
-    override fun saveCategory(data: MutableMap<String, String>) {
-        val gson = Gson()
-        val json = gson.toJson(data)
-        val jsonString: String = json.toString()
-        editor.putString(APP_CATEGORY, jsonString).apply()
-    }
-
-    override fun getCategory(): HashMap<String, String> {
-        var data = hashMapOf<String, String>()
-        val gson = Gson()
-        val json = preference.getString(APP_CATEGORY, "")
-        val type = object : TypeToken<HashMap<String, String>>() {}.type
-        data = gson.fromJson(json, type)
-        return data
     }
 
     override fun saveUserData(userData: LoginResponseSucessModel?) {
@@ -149,6 +80,28 @@ class AppPreferenceImpl @Inject constructor(context: Context) : AppPreference {
         val json = preference.getString(MY_SIDE_BAR_DATA, "")
         val type = object : TypeToken<List<HomeModel?>?>() {}.type
         return gson.fromJson(json, type)
+    }
+
+    override fun saveMyProfileData(myProfile: MyProfile) {
+        val gson = Gson()
+        val json = gson.toJson(myProfile)
+        val jsonString: String = json.toString()
+        editor.putString(USER_PROFILE_DATA, jsonString).apply()
+    }
+
+    override fun getMyProfileData(): MyProfile {
+        val gson = Gson()
+        val json = preference.getString(USER_PROFILE_DATA, "")
+        val type = object : TypeToken<MyProfile>() {}.type
+        return gson.fromJson(json, type)
+    }
+
+    override fun setAppSecurityOption(position: Int) {
+        editor.putInt(APP_SECURTIY_OPTION, position).apply()
+    }
+
+    override fun getAppSecurityOption(): Int {
+        return preference.getInt(APP_SECURTIY_OPTION, 0) ?: 0
     }
 
 

@@ -1,22 +1,17 @@
 package com.egpaid.employeeapp.home.monitor.injection
 
 import android.content.Context
-import android.view.LayoutInflater
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.egpaid.employeeapp.base.adapter.DiffCallback
 import com.egpaid.employeeapp.base.di.qualifier.ForFragment
 import com.egpaid.employeeapp.base.di.scope.PerFragment
-import com.egpaid.employeeapp.base.livedata.SingleLiveData
 import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 import com.egpaid.employeeapp.home.monitor.view.HomeFragment
 import com.egpaid.employeeapp.home.domain.MainActivityUseCase
 import com.egpaid.employeeapp.home.domain.MainActivityUseCaseImpl
-import com.egpaid.employeeapp.home.monitor.viewmdel.MonitorDataViewModel
-import com.egpaid.employeeapp.home.monitor.viewmdel.MonitorDataViewModelFactory
+import com.egpaid.employeeapp.home.monitor.viewmdel.HomeDataViewModel
+import com.egpaid.employeeapp.home.monitor.viewmdel.HomeDataViewModelFactory
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -44,14 +39,14 @@ class HomeFragmentModule {
     @PerFragment
     fun provideMonitor(
         homeFragment: HomeFragment,
-        factory: MonitorDataViewModelFactory
-    ): MonitorDataViewModel =
-            ViewModelProvider(homeFragment, factory).get(MonitorDataViewModel::class.java)
+        factory: HomeDataViewModelFactory
+    ): HomeDataViewModel =
+            ViewModelProvider(homeFragment, factory).get(HomeDataViewModel::class.java)
 
     @Provides
     @PerFragment
-    fun bindMonitorViewModel(monitorViewModel: MonitorDataViewModel): ViewModel =
-            monitorViewModel
+    fun bindMonitorViewModel(homeViewModel: HomeDataViewModel): ViewModel =
+            homeViewModel
 
     @Provides
     @PerFragment

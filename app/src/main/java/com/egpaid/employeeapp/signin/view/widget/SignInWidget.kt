@@ -12,4 +12,5 @@ interface SignInWidget : ContentStateWidget<LoginResponseErrorModel> {
         object EmptyFiled : CallToAction()
     }
     val onClicked: LiveData<CallToAction>
+   fun hideProgressBar()
 }

@@ -9,13 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/view_loading" />
-
-        <include layout="@layout/view_books_loaded" />
-
-        <include layout="@layout/view_base_general_error" />
-
-        <include layout="@layout/view_base_network_error" />
 
     </ViewFlipper>
 

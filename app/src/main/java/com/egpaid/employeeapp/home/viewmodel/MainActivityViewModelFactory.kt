@@ -8,7 +8,7 @@ import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 import com.egpaid.employeeapp.home.domain.MainActivityUseCase
 import javax.inject.Inject
 
-class HomeViewModeFactory @Inject constructor(
+class MainActivityViewModelFactory @Inject constructor(
     private val stateLiveData: MutableLiveData<BaseViewModel.State>,
     private val appPreference: AppPreference,
     private val mainActivityUseCase: MainActivityUseCase
@@ -16,7 +16,7 @@ class HomeViewModeFactory @Inject constructor(
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(p0: Class<T>): T {
-        return HomeViewModelImpl(
+        return MainActivityViewModelImpl(
             stateLiveData,
             appPreference,
             mainActivityUseCase

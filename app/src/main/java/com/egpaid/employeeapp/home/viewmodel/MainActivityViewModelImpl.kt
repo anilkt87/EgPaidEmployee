@@ -1,18 +1,16 @@
 package com.egpaid.employeeapp.home.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.egpaid.employeeapp.base.apppreferences.AppPreference
 import com.egpaid.employeeapp.home.domain.MainActivityUseCase
 import com.egpaid.employeeapp.home.view.entities.HomeModel
-import io.reactivex.Single
 import javax.inject.Inject
 
-class HomeViewModelImpl @Inject constructor(
+class MainActivityViewModelImpl @Inject constructor(
     override val stateLiveData: MutableLiveData<State>,
     private val appPreference: AppPreference,
     private val mainActivityUseCase: MainActivityUseCase
-) : HomeViewModel(), MainActivityUseCase.Callback {
+) : MainActivityViewModel(), MainActivityUseCase.Callback {
 
     init {
         mainActivityUseCase.setCallback(this)

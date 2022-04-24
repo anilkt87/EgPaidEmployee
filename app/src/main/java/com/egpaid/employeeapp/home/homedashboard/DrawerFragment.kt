@@ -16,6 +16,7 @@ import com.egpaid.employeeapp.home.homedashboard.adapter.DrawerAdapter
 import com.egpaid.employeeapp.home.homedashboard.drawberviewmodel.DrawableViewModel
 import com.egpaid.employeeapp.home.homedashboard.listner.ClickListener
 import com.egpaid.employeeapp.home.homedashboard.listner.FragmentDrawerListener
+import com.egpaid.employeeapp.home.view.entities.MenuItemModle
 import com.egpaid.employeeapp.home.view.entities.Submenu
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_drawer.*
@@ -147,7 +148,7 @@ class DrawerFragment : Fragment(), FragmentDrawerListener {
         containerView?.let { mDrawerLayout?.closeDrawer(it) }
     }
 
-    private  fun displayNaveView(data: ArrayList<Submenu> ){
+    private  fun displayNaveView(data: ArrayList<MenuItemModle> ){
 //      TODO  var titles = activity?.resources?.getStringArray(R.array.nav_drawer_labels)
 
 

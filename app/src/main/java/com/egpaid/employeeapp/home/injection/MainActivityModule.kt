@@ -14,9 +14,9 @@ import com.egpaid.employeeapp.home.monitor.injection.HomeFragmentBinding
 import com.egpaid.employeeapp.home.repostries.MainActivityRepo
 import com.egpaid.employeeapp.home.repostries.MainActivityRepoImpl
 import com.egpaid.employeeapp.home.view.MainActivity
-import com.egpaid.employeeapp.home.viewmodel.HomeViewModeFactory
-import com.egpaid.employeeapp.home.viewmodel.HomeViewModel
-import com.egpaid.employeeapp.home.viewmodel.HomeViewModelImpl
+import com.egpaid.employeeapp.home.viewmodel.MainActivityViewModelFactory
+import com.egpaid.employeeapp.home.viewmodel.MainActivityViewModel
+import com.egpaid.employeeapp.home.viewmodel.MainActivityViewModelImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -52,13 +52,13 @@ class MainActivityModule {
     @PerActivity
     fun provideHomeViewModel(
         mainActivity: MainActivity,
-        factory: HomeViewModeFactory
-    ): HomeViewModel =
-        ViewModelProvider(mainActivity, factory).get(HomeViewModel::class.java)
+        factory: MainActivityViewModelFactory
+    ): MainActivityViewModel =
+        ViewModelProvider(mainActivity, factory).get(MainActivityViewModel::class.java)
 
     @Provides
     @PerActivity
-    fun bindHomeViewModel(homeViewModelImpl: HomeViewModelImpl): ViewModel =
+    fun bindHomeViewModel(homeViewModelImpl: MainActivityViewModelImpl): ViewModel =
         homeViewModelImpl
 
     @Provides

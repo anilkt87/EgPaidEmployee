@@ -7,13 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.egpaid.employeeapp.R
+import com.egpaid.employeeapp.appsecurity.view.AppSecurityActivity
 import com.egpaid.employeeapp.base.extenstion.observe
 import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 import com.egpaid.employeeapp.home.homedashboard.DrawerFragment
 import com.egpaid.employeeapp.home.homedashboard.listner.FragmentDrawerListener
 import com.egpaid.employeeapp.home.monitor.view.HomeFragment
 import com.egpaid.employeeapp.menuitem.view.MenuActivity
-import com.egpaid.employeeapp.home.viewmodel.HomeViewModel
+import com.egpaid.employeeapp.home.viewmodel.MainActivityViewModel
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -23,14 +24,14 @@ class MainActivity : AppCompatActivity(), FragmentDrawerListener {
     private lateinit var drawerFragment: DrawerFragment
 
     @Inject
-    lateinit var homeViewModel: HomeViewModel
+    lateinit var mainActivityViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        homeViewModel.apply {
+        mainActivityViewModel.apply {
             getMyAppSideBar()
             observe(stateLiveData, ::getMySideBarData)
         }
@@ -78,6 +79,10 @@ class MainActivity : AppCompatActivity(), FragmentDrawerListener {
         when (position) {
             0 -> {
                 showDefaultPage()
+            }
+            3 -> {
+                val intent = Intent(this, AppSecurityActivity::class.java)
+                startActivity(intent)
             }
             else -> {
                 val bundle = Bundle()

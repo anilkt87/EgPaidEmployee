@@ -2,8 +2,10 @@ package com.egpaid.employeeapp.signin.viewmodel
 
 import androidx.lifecycle.MediatorLiveData
 import com.egpaid.employeeapp.base.apppreferences.AppPreference
+import com.egpaid.employeeapp.base.viewmodel.BaseViewModel
 import com.egpaid.employeeapp.home.domain.MainActivityUseCase
 import com.egpaid.employeeapp.home.view.entities.HomeModel
+import com.egpaid.employeeapp.home.view.entities.myprofile.MyProfile
 import com.egpaid.employeeapp.signin.domain.AppSettingUseCase
 import com.egpaid.employeeapp.signin.domain.SignInUseCase
 import com.egpaid.employeeapp.signin.entities.AppSettingResponse
@@ -19,14 +21,16 @@ class SignInViewModelImpl @Inject constructor(
     private val mainActivityUseCase: MainActivityUseCase,
     val appPreference: AppPreference
 ) : SignInViewModel(), SignInUseCase.Callback, AppSettingUseCase.Callback,
-    MainActivityUseCase.Callback {
+    MainActivityUseCase.Callback, MainActivityUseCase.MyProfileCallback {
     init {
         getSignInUseCase.setCallback(this)
         appSettingUseCase.setCallback(this)
         mainActivityUseCase.setCallback(this)
+        mainActivityUseCase.setMyProfileback(this)
     }
 
     override fun getLoginData(loginRequestModel: LoginRequestModel) {
+        signInLiveData.value = State.Loading
         getSignInUseCase.execute(loginRequestModel)
     }
 
@@ -38,6 +42,22 @@ class SignInViewModelImpl @Inject constructor(
     override fun getMyAppSideBarFromAPI() {
         val token = appPreference.getUserData()?.token
         mainActivityUseCase.execute(token.toString())
+    }
+
+    override fun getProfile() {
+        val token = appPreference.getUserData()?.token
+        mainActivityUseCase.getMyProfile(token.toString())
+    }
+
+    override fun checkAlreadySignIn() {
+        if (!appPreference.getUserData()?.token.isNullOrEmpty() && appPreference.getAppSecurityOption() == 0) {
+            signInLiveData.value = State.AlreadySignIn
+        }
+        if (!appPreference.getUserData()?.token.isNullOrEmpty() && (appPreference.getAppSecurityOption() == 1 ||
+            appPreference.getAppSecurityOption() == 2 || appPreference.getAppSecurityOption() == 3)
+        ) {
+            signInLiveData.value = State.RedirectToAppLocaPage
+        }
     }
 
     override fun onLoginSuccess(response: LoginResponseSucessModel?) {
@@ -74,6 +94,15 @@ class SignInViewModelImpl @Inject constructor(
     }
 
     override fun onMySideBarError(error: Throwable) {
+        signInLiveData.value = State.Error(error)
+    }
+
+    override fun onMyProfileSuccess(response: MyProfile) {
+        appPreference.saveMyProfileData(response)
+        signInLiveData.value = State.MyProfileResponse(response)
+    }
+
+    override fun onMyProfileError(error: Throwable) {
         signInLiveData.value = State.Error(error)
     }
 

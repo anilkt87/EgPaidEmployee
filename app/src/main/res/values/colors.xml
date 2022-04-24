@@ -14,4 +14,7 @@
     <color name="btn_color">#F2C94C</color>
     <color name="gradient_200">#FFED8E</color>
     <color name="light_gray">#D3D3D3</color>
+    <color name="color_yellow">#FBBD18</color>
+    <color name="color_blue">#1B1346</color>
+    <color name="color_semi_blue">#342461</color>
 </resources>

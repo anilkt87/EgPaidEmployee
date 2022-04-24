@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.egpaid.employeeapp.R
 import com.egpaid.employeeapp.home.homedashboard.listner.FragmentDrawerListener
-import com.egpaid.employeeapp.home.view.entities.Submenu
+import com.egpaid.employeeapp.home.view.entities.MenuItemModle
 import kotlinx.android.synthetic.main.nav_drawer_row.view.*
 
-class DrawerAdapter(val context:Context, private val data: ArrayList<Submenu>, val listener: FragmentDrawerListener) :
+class DrawerAdapter(val context:Context, private val data: ArrayList<MenuItemModle>, val listener: FragmentDrawerListener) :
     RecyclerView.Adapter<DrawerAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view =

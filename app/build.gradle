@@ -121,6 +121,11 @@ dependencies {
     implementation project(':MPChartLib')
     implementation 'com.github.kamrul3288:Expandable-Recyclerview-List-Android:1.0.2'
 
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.0.0'
+    implementation 'com.google.android.gms:play-services-identity:17.0.0'
+    implementation 'com.google.android.gms:play-services-base:17.3.0'
+
 
 }
 repositories {

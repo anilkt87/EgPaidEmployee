@@ -15,8 +15,12 @@ class SignInWidgetImpl @Inject constructor(
 ) : SignInWidget {
 
     override lateinit var containerView: View
+    override fun hideProgressBar() {
+        app_wise_progress_circular.visibility = View.GONE
+    }
 
     override fun showLoading() {
+        app_wise_progress_circular.visibility = View.VISIBLE
     }
 
     override fun setContent(content: LoginResponseErrorModel) {
@@ -43,7 +47,9 @@ class SignInWidgetImpl @Inject constructor(
         et_mobile.apply {
             addTextChangedListener(object : TextWatcherAdapter() {
                 override fun afterTextChanged(s: Editable) {
-                    ((!et_mobile.text.isNullOrEmpty() || !et_password.text.isNullOrEmpty()) && et_mobile.text.length == 10).also { btn_login.isEnabled = it }
+                    ((!et_mobile.text.isNullOrEmpty() || !et_password.text.isNullOrEmpty()) && et_mobile.text.length == 10).also {
+                        btn_login.isEnabled = it
+                    }
 
 
                 }
@@ -53,7 +59,9 @@ class SignInWidgetImpl @Inject constructor(
         et_password.apply {
             addTextChangedListener(object : TextWatcherAdapter() {
                 override fun afterTextChanged(s: Editable) {
-                    ((!et_mobile.text.isNullOrEmpty() || !et_password.text.isNullOrEmpty()) && et_mobile.text.length == 10).also { btn_login.isEnabled = it }
+                    ((!et_mobile.text.isNullOrEmpty() || !et_password.text.isNullOrEmpty()) && et_mobile.text.length == 10).also {
+                        btn_login.isEnabled = it
+                    }
                 }
             })
         }

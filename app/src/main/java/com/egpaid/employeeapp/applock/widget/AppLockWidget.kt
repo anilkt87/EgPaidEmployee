@@ -3,8 +3,9 @@ package com.egpaid.employeeapp.applock.widget
 import android.view.View
 import androidx.lifecycle.LiveData
 import com.egpaid.employeeapp.base.widget.ContentStateWidget
+import com.egpaid.employeeapp.base.widget.ContentViewWidget
 
-interface AppLockWidget : ContentStateWidget<View> {
+interface AppLockWidget : ContentViewWidget{
     sealed class CallToAction {
         data class ValidateDigit(var digitValue: String) : CallToAction()
         data class CreatePassword(var password: String) : CallToAction()
@@ -16,8 +17,10 @@ interface AppLockWidget : ContentStateWidget<View> {
 
     val onClicked: LiveData<CallToAction>
 
-    fun displayCreatePin()
     fun displayEnterPin()
 
-    fun wrongPasswordEntry()
+
+    fun displayPatternOption()
+
+    fun displayBiometricOption()
 }
