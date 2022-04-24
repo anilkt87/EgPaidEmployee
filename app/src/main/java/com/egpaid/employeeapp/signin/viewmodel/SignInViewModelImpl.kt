@@ -50,13 +50,8 @@ class SignInViewModelImpl @Inject constructor(
     }
 
     override fun checkAlreadySignIn() {
-        if (!appPreference.getUserData()?.token.isNullOrEmpty() && appPreference.getAppSecurityOption() == 0) {
+        if (!appPreference.getUserData()?.token.isNullOrEmpty()) {
             signInLiveData.value = State.AlreadySignIn
-        }
-        if (!appPreference.getUserData()?.token.isNullOrEmpty() && (appPreference.getAppSecurityOption() == 1 ||
-            appPreference.getAppSecurityOption() == 2 || appPreference.getAppSecurityOption() == 3)
-        ) {
-            signInLiveData.value = State.RedirectToAppLocaPage
         }
     }
 

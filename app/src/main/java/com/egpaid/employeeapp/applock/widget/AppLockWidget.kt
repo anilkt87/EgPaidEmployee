@@ -8,7 +8,7 @@ import com.egpaid.employeeapp.base.widget.ContentViewWidget
 interface AppLockWidget : ContentViewWidget{
     sealed class CallToAction {
         data class ValidateDigit(var digitValue: String) : CallToAction()
-        data class CreatePassword(var password: String) : CallToAction()
+        data class ValidatePattern(var password: String) : CallToAction()
         data class ChangePassword(
             var oldPassword: String,
             var newpassword: String

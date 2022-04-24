@@ -87,11 +87,6 @@ class SigninActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-            is BaseViewModel.State.RedirectToAppLocaPage -> {
-                val intent = Intent(this, AppLockActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
             is BaseViewModel.State.LoginError -> Toast.makeText(this, "Fail", Toast.LENGTH_LONG)
                 .show()
             is BaseViewModel.State.Error -> Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show()

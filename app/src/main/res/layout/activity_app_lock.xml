@@ -43,13 +43,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" work is going On"
+        <com.andrognito.patternlockview.PatternLockView
+            android:id="@+id/pattern_lock_view_login"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_centerInParent="true"
+            app:correctStateColor="@color/color_yellow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:normalStateColor="@color/color_yellow"
+            app:wrongStateColor="@color/color_semi_blue" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

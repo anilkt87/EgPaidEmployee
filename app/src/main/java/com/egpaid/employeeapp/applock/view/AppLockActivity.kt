@@ -54,6 +54,9 @@ class AppLockActivity : AppCompatActivity() {
             is BaseViewModel.State.INCORRECT_PIN -> {
                 Toast.makeText(this, "Enter correct Pin", Toast.LENGTH_LONG).show()
             }
+            is BaseViewModel.State.IncorrectPattern -> {
+                Toast.makeText(this, "Enter correct Pattern", Toast.LENGTH_LONG).show()
+            }
             is Success -> {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -81,6 +84,9 @@ class AppLockActivity : AppCompatActivity() {
         when (callAction) {
             is CallToAction.ValidateDigit -> {
                 appLockViewModel.validatePin(callAction.digitValue)
+            }
+            is CallToAction.ValidatePattern -> {
+                appLockViewModel.validatePattern(callAction.password)
             }
             else -> {
 

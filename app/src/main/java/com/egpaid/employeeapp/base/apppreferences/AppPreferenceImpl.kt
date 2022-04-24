@@ -16,6 +16,7 @@ class AppPreferenceImpl @Inject constructor(context: Context) : AppPreference {
         const val USER_NAME = "user_name"
         const val WEBSITE = "website"
         const val APP_LOCK_PIN = "app_lock_pin"
+        const val APP_PATTERN_LOCK_PIN = "app_pattern_lock"
         const val IS_CHILD_MODE = "is_child_mode"
         const val LAST_MONITOR_DATA = "last_monitor_data"
         const val LAST_MONITOR_WEEKLY_DATA = "last_monitor_weekly"
@@ -36,6 +37,14 @@ class AppPreferenceImpl @Inject constructor(context: Context) : AppPreference {
 
     override fun getAppLockPin(): String {
         return preference.getString(APP_LOCK_PIN, "") ?: ""
+    }
+
+    override fun savePatternLockData(pin: String) {
+        editor.putString(APP_PATTERN_LOCK_PIN, pin).apply()
+    }
+
+    override fun getGetPatternLockData(): String {
+        return preference.getString(APP_PATTERN_LOCK_PIN, "") ?: ""
     }
 
 

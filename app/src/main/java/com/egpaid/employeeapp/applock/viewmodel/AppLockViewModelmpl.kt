@@ -32,5 +32,13 @@ class AppLockViewModelmpl @Inject constructor(
         }
     }
 
+    override fun validatePattern(password: String) {
+        if (password == apppPreference.getGetPatternLockData()) {
+            pinStateLiveData.value = State.Success("")
+        } else {
+            pinStateLiveData.value = State.IncorrectPattern
+        }
+    }
+
 
 }

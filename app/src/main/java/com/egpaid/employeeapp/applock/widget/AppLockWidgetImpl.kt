@@ -9,6 +9,10 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
+import com.andrognito.patternlockview.PatternLockView
+import com.andrognito.patternlockview.listener.PatternLockViewListener
+import com.andrognito.patternlockview.utils.PatternLockUtils
+import com.egpaid.employeeapp.base.apppreferences.AppPreference
 import com.egpaid.employeeapp.base.livedata.SingleLiveData
 import kotlinx.android.synthetic.main.activity_app_lock.view.*
 import kotlinx.android.synthetic.main.view_app_lock_registraion.*
@@ -32,7 +36,20 @@ class AppLockWidgetImpl @Inject constructor(
                 onClicked.value =
                     AppLockWidget.CallToAction.ValidateDigit(et_enter_pin.text.toString())
             }
+
+
+            pattern_lock_view_login.addPatternLockListener(object : PatternLockViewListener {
+                override fun onStarted() {}
+                override fun onProgress(progressPattern: List<PatternLockView.Dot>) {}
+                override fun onComplete(pattern: List<PatternLockView.Dot>) {
+                    onClicked.value = AppLockWidget.CallToAction.ValidatePattern(PatternLockUtils.patternToString(pattern_lock_view_login, pattern))
+                }
+
+                override fun onCleared() {}
+            })
         }
+
+
     }
 
 

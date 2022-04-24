@@ -10,6 +10,9 @@ interface AppPreference {
     fun saveAppLockPin(pin: String)
     fun getAppLockPin(): String
 
+    fun savePatternLockData(pin: String)
+    fun getGetPatternLockData(): String
+
     fun saveUserData(userData: LoginResponseSucessModel?)
     fun getUserData(): LoginResponseSucessModel?
 

@@ -28,7 +28,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         object RedirectToAppLocaPage : State()
 
         object ENTER_PIN : State()
-        object CHANGE_PIN : State()
+        object IncorrectPattern : State()
         object CREATE_PIN : State()
         object INCORRECT_PIN : State()
 
