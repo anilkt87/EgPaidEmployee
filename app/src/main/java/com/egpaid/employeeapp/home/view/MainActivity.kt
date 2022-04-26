@@ -19,6 +19,7 @@ import com.egpaid.employeeapp.home.homedashboard.listner.FragmentDrawerListener
 import com.egpaid.employeeapp.home.monitor.view.HomeFragment
 import com.egpaid.employeeapp.home.viewmodel.MainActivityViewModel
 import com.egpaid.employeeapp.menuitem.view.MenuActivity
+import com.egpaid.employeeapp.merchentonboarding.view.MerchantOnBoardingActivity
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -94,7 +95,11 @@ class MainActivity : AppCompatActivity(), FragmentDrawerListener {
             0 -> {
                 showDefaultPage()
             }
-            3 -> {
+            5 -> {
+                val intent = Intent(this, MerchantOnBoardingActivity::class.java)
+                startActivity(intent)
+            }
+            9 -> {
                 val intent = Intent(this, AppSecurityActivity::class.java)
                 startActivity(intent)
             }

@@ -20,6 +20,26 @@ class DrawableViewModelImpl(
 
         homePageItemData?.let {
             for (item in it) {
+                menuItemList.add(
+                    MenuItemModle(
+                        item.menu?.id,
+                        item.menu?.usertype,
+                        item.menu?.pagename,
+                        item.menu?.icon,
+                        item.menu?.location,
+                        item.menu?.treeview,
+                        item.menu?.parent,
+                        item.menu?.orderby,
+                        item.menu?.status
+                    )
+                )
+
+
+            }
+        }
+
+        homePageItemData?.let {
+            for (item in it) {
                 if (item.submenu.size > 0) {
                     for (subitem in item.submenu) {
                         menuItemList.add(
@@ -38,21 +58,6 @@ class DrawableViewModelImpl(
                     }
 
                 }
-                menuItemList.add(
-                    MenuItemModle(
-                        item.menu?.id,
-                        item.menu?.usertype,
-                        item.menu?.pagename,
-                        item.menu?.icon,
-                        item.menu?.location,
-                        item.menu?.treeview,
-                        item.menu?.parent,
-                        item.menu?.orderby,
-                        item.menu?.status
-                    )
-                )
-
-
             }
         }
 

@@ -20,7 +20,7 @@ import com.egpaid.employeeapp.home.view.entities.Menu
 import com.egpaid.employeeapp.home.view.entities.myprofile.MyProfile
 import com.egpaid.employeeapp.merchentonboarding.view.MerchantOnBoardingActivity
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_monitor.*
+import kotlinx.android.synthetic.main.fragment_home_view.*
 import kotlinx.android.synthetic.main.item_visitin_card_view_home.*
 import kotlinx.android.synthetic.main.nav_drawer_row.view.*
 import javax.inject.Inject
@@ -41,7 +41,7 @@ class HomeFragment : Fragment(), GrdViewListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_monitor, container, false)
+        return inflater.inflate(R.layout.fragment_home_view, container, false)
     }
 
 

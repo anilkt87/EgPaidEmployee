@@ -7,6 +7,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-    <include layout="@layout/view_books_widget" />
+    <include layout="@layout/activity_merchent_onboarding" />
 
 </LinearLayout>
